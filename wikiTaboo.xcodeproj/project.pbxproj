@@ -1,0 +1,471 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4CCA50A0199202E6009F87DC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA509F199202E6009F87DC /* Foundation.framework */; };
+		4CCA50A2199202E6009F87DC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA50A1199202E6009F87DC /* CoreGraphics.framework */; };
+		4CCA50A4199202E6009F87DC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA50A3199202E6009F87DC /* UIKit.framework */; };
+		4CCA50AA199202E6009F87DC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4CCA50A8199202E6009F87DC /* InfoPlist.strings */; };
+		4CCA50AC199202E6009F87DC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCA50AB199202E6009F87DC /* main.m */; };
+		4CCA50B0199202E6009F87DC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCA50AF199202E6009F87DC /* AppDelegate.m */; };
+		4CCA50B3199202E6009F87DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CCA50B1199202E6009F87DC /* Main.storyboard */; };
+		4CCA50B6199202E6009F87DC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCA50B5199202E6009F87DC /* ViewController.m */; };
+		4CCA50B8199202E6009F87DC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CCA50B7199202E6009F87DC /* Images.xcassets */; };
+		4CCA50BF199202E7009F87DC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA50BE199202E7009F87DC /* XCTest.framework */; };
+		4CCA50C0199202E7009F87DC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA509F199202E6009F87DC /* Foundation.framework */; };
+		4CCA50C1199202E7009F87DC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA50A3199202E6009F87DC /* UIKit.framework */; };
+		4CCA50C9199202E7009F87DC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4CCA50C7199202E7009F87DC /* InfoPlist.strings */; };
+		4CCA50CB199202E7009F87DC /* wikiTabooTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCA50CA199202E7009F87DC /* wikiTabooTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4CCA50C2199202E7009F87DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4CCA5094199202E6009F87DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4CCA509B199202E6009F87DC;
+			remoteInfo = wikiTaboo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4CCA509C199202E6009F87DC /* wikiTaboo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wikiTaboo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CCA509F199202E6009F87DC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4CCA50A1199202E6009F87DC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4CCA50A3199202E6009F87DC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4CCA50A7199202E6009F87DC /* wikiTaboo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "wikiTaboo-Info.plist"; sourceTree = "<group>"; };
+		4CCA50A9199202E6009F87DC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4CCA50AB199202E6009F87DC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4CCA50AD199202E6009F87DC /* wikiTaboo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "wikiTaboo-Prefix.pch"; sourceTree = "<group>"; };
+		4CCA50AE199202E6009F87DC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4CCA50AF199202E6009F87DC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4CCA50B2199202E6009F87DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4CCA50B4199202E6009F87DC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		4CCA50B5199202E6009F87DC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		4CCA50B7199202E6009F87DC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		4CCA50BD199202E6009F87DC /* wikiTabooTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wikiTabooTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CCA50BE199202E7009F87DC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		4CCA50C6199202E7009F87DC /* wikiTabooTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "wikiTabooTests-Info.plist"; sourceTree = "<group>"; };
+		4CCA50C8199202E7009F87DC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4CCA50CA199202E7009F87DC /* wikiTabooTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = wikiTabooTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4CCA5099199202E6009F87DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CCA50A2199202E6009F87DC /* CoreGraphics.framework in Frameworks */,
+				4CCA50A4199202E6009F87DC /* UIKit.framework in Frameworks */,
+				4CCA50A0199202E6009F87DC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4CCA50BA199202E6009F87DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CCA50BF199202E7009F87DC /* XCTest.framework in Frameworks */,
+				4CCA50C1199202E7009F87DC /* UIKit.framework in Frameworks */,
+				4CCA50C0199202E7009F87DC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4CCA5093199202E6009F87DC = {
+			isa = PBXGroup;
+			children = (
+				4CCA50A5199202E6009F87DC /* wikiTaboo */,
+				4CCA50C4199202E7009F87DC /* wikiTabooTests */,
+				4CCA509E199202E6009F87DC /* Frameworks */,
+				4CCA509D199202E6009F87DC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4CCA509D199202E6009F87DC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4CCA509C199202E6009F87DC /* wikiTaboo.app */,
+				4CCA50BD199202E6009F87DC /* wikiTabooTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4CCA509E199202E6009F87DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4CCA509F199202E6009F87DC /* Foundation.framework */,
+				4CCA50A1199202E6009F87DC /* CoreGraphics.framework */,
+				4CCA50A3199202E6009F87DC /* UIKit.framework */,
+				4CCA50BE199202E7009F87DC /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4CCA50A5199202E6009F87DC /* wikiTaboo */ = {
+			isa = PBXGroup;
+			children = (
+				4CCA50AE199202E6009F87DC /* AppDelegate.h */,
+				4CCA50AF199202E6009F87DC /* AppDelegate.m */,
+				4CCA50B1199202E6009F87DC /* Main.storyboard */,
+				4CCA50B4199202E6009F87DC /* ViewController.h */,
+				4CCA50B5199202E6009F87DC /* ViewController.m */,
+				4CCA50B7199202E6009F87DC /* Images.xcassets */,
+				4CCA50A6199202E6009F87DC /* Supporting Files */,
+			);
+			path = wikiTaboo;
+			sourceTree = "<group>";
+		};
+		4CCA50A6199202E6009F87DC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4CCA50A7199202E6009F87DC /* wikiTaboo-Info.plist */,
+				4CCA50A8199202E6009F87DC /* InfoPlist.strings */,
+				4CCA50AB199202E6009F87DC /* main.m */,
+				4CCA50AD199202E6009F87DC /* wikiTaboo-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4CCA50C4199202E7009F87DC /* wikiTabooTests */ = {
+			isa = PBXGroup;
+			children = (
+				4CCA50CA199202E7009F87DC /* wikiTabooTests.m */,
+				4CCA50C5199202E7009F87DC /* Supporting Files */,
+			);
+			path = wikiTabooTests;
+			sourceTree = "<group>";
+		};
+		4CCA50C5199202E7009F87DC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4CCA50C6199202E7009F87DC /* wikiTabooTests-Info.plist */,
+				4CCA50C7199202E7009F87DC /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4CCA509B199202E6009F87DC /* wikiTaboo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4CCA50CE199202E7009F87DC /* Build configuration list for PBXNativeTarget "wikiTaboo" */;
+			buildPhases = (
+				4CCA5098199202E6009F87DC /* Sources */,
+				4CCA5099199202E6009F87DC /* Frameworks */,
+				4CCA509A199202E6009F87DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = wikiTaboo;
+			productName = wikiTaboo;
+			productReference = 4CCA509C199202E6009F87DC /* wikiTaboo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4CCA50BC199202E6009F87DC /* wikiTabooTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4CCA50D1199202E7009F87DC /* Build configuration list for PBXNativeTarget "wikiTabooTests" */;
+			buildPhases = (
+				4CCA50B9199202E6009F87DC /* Sources */,
+				4CCA50BA199202E6009F87DC /* Frameworks */,
+				4CCA50BB199202E6009F87DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4CCA50C3199202E7009F87DC /* PBXTargetDependency */,
+			);
+			name = wikiTabooTests;
+			productName = wikiTabooTests;
+			productReference = 4CCA50BD199202E6009F87DC /* wikiTabooTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4CCA5094199202E6009F87DC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Jessica Kwok";
+				TargetAttributes = {
+					4CCA50BC199202E6009F87DC = {
+						TestTargetID = 4CCA509B199202E6009F87DC;
+					};
+				};
+			};
+			buildConfigurationList = 4CCA5097199202E6009F87DC /* Build configuration list for PBXProject "wikiTaboo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4CCA5093199202E6009F87DC;
+			productRefGroup = 4CCA509D199202E6009F87DC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4CCA509B199202E6009F87DC /* wikiTaboo */,
+				4CCA50BC199202E6009F87DC /* wikiTabooTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4CCA509A199202E6009F87DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CCA50B8199202E6009F87DC /* Images.xcassets in Resources */,
+				4CCA50AA199202E6009F87DC /* InfoPlist.strings in Resources */,
+				4CCA50B3199202E6009F87DC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4CCA50BB199202E6009F87DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CCA50C9199202E7009F87DC /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4CCA5098199202E6009F87DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CCA50B6199202E6009F87DC /* ViewController.m in Sources */,
+				4CCA50B0199202E6009F87DC /* AppDelegate.m in Sources */,
+				4CCA50AC199202E6009F87DC /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4CCA50B9199202E6009F87DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CCA50CB199202E7009F87DC /* wikiTabooTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4CCA50C3199202E7009F87DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4CCA509B199202E6009F87DC /* wikiTaboo */;
+			targetProxy = 4CCA50C2199202E7009F87DC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4CCA50A8199202E6009F87DC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4CCA50A9199202E6009F87DC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4CCA50B1199202E6009F87DC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4CCA50B2199202E6009F87DC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4CCA50C7199202E7009F87DC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4CCA50C8199202E7009F87DC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4CCA50CC199202E7009F87DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4CCA50CD199202E7009F87DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4CCA50CF199202E7009F87DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "wikiTaboo/wikiTaboo-Prefix.pch";
+				INFOPLIST_FILE = "wikiTaboo/wikiTaboo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		4CCA50D0199202E7009F87DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "wikiTaboo/wikiTaboo-Prefix.pch";
+				INFOPLIST_FILE = "wikiTaboo/wikiTaboo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		4CCA50D2199202E7009F87DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/wikiTaboo.app/wikiTaboo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "wikiTaboo/wikiTaboo-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "wikiTabooTests/wikiTabooTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		4CCA50D3199202E7009F87DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/wikiTaboo.app/wikiTaboo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "wikiTaboo/wikiTaboo-Prefix.pch";
+				INFOPLIST_FILE = "wikiTabooTests/wikiTabooTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4CCA5097199202E6009F87DC /* Build configuration list for PBXProject "wikiTaboo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CCA50CC199202E7009F87DC /* Debug */,
+				4CCA50CD199202E7009F87DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4CCA50CE199202E7009F87DC /* Build configuration list for PBXNativeTarget "wikiTaboo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CCA50CF199202E7009F87DC /* Debug */,
+				4CCA50D0199202E7009F87DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		4CCA50D1199202E7009F87DC /* Build configuration list for PBXNativeTarget "wikiTabooTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CCA50D2199202E7009F87DC /* Debug */,
+				4CCA50D3199202E7009F87DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4CCA5094199202E6009F87DC /* Project object */;
+}
