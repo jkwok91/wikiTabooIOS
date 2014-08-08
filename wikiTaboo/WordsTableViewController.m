@@ -41,7 +41,7 @@
         // store teams
         _allTeams = [[NSMutableArray alloc] init];
         _currentTeamIdx = 0;
-        subroundLength = 3;
+        subroundLength = 10;
         secondsLeft = subroundLength;
     }
     return self;
@@ -144,6 +144,10 @@
 /* HANDLING HTTP REQUESTS */
 /**************************/
 - (void)getNewWord {
+    // clear prev word/taboo words
+    self.word = @"";
+    [self.tabooWords removeAllObjects];
+    
     // pause timer (because latency)
     // TODO pause timer
     
