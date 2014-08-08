@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C473202199306FD009A1C85 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C473201199306FD009A1C85 /* Word.m */; };
+		4C473205199307B8009A1C85 /* WordsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C473204199307B8009A1C85 /* WordsTableViewController.m */; };
 		4CCA50A0199202E6009F87DC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA509F199202E6009F87DC /* Foundation.framework */; };
 		4CCA50A2199202E6009F87DC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA50A1199202E6009F87DC /* CoreGraphics.framework */; };
 		4CCA50A4199202E6009F87DC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA50A3199202E6009F87DC /* UIKit.framework */; };
@@ -14,7 +16,6 @@
 		4CCA50AC199202E6009F87DC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCA50AB199202E6009F87DC /* main.m */; };
 		4CCA50B0199202E6009F87DC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCA50AF199202E6009F87DC /* AppDelegate.m */; };
 		4CCA50B3199202E6009F87DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CCA50B1199202E6009F87DC /* Main.storyboard */; };
-		4CCA50B6199202E6009F87DC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCA50B5199202E6009F87DC /* ViewController.m */; };
 		4CCA50B8199202E6009F87DC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CCA50B7199202E6009F87DC /* Images.xcassets */; };
 		4CCA50BF199202E7009F87DC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA50BE199202E7009F87DC /* XCTest.framework */; };
 		4CCA50C0199202E7009F87DC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA509F199202E6009F87DC /* Foundation.framework */; };
@@ -34,6 +35,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C473200199306FD009A1C85 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
+		4C473201199306FD009A1C85 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
+		4C473203199307B8009A1C85 /* WordsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordsTableViewController.h; sourceTree = "<group>"; };
+		4C473204199307B8009A1C85 /* WordsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordsTableViewController.m; sourceTree = "<group>"; };
 		4CCA509C199202E6009F87DC /* wikiTaboo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wikiTaboo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CCA509F199202E6009F87DC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4CCA50A1199202E6009F87DC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -45,8 +50,6 @@
 		4CCA50AE199202E6009F87DC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4CCA50AF199202E6009F87DC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4CCA50B2199202E6009F87DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4CCA50B4199202E6009F87DC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		4CCA50B5199202E6009F87DC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4CCA50B7199202E6009F87DC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4CCA50BD199202E6009F87DC /* wikiTabooTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wikiTabooTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CCA50BE199202E7009F87DC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -114,9 +117,11 @@
 			children = (
 				4CCA50AE199202E6009F87DC /* AppDelegate.h */,
 				4CCA50AF199202E6009F87DC /* AppDelegate.m */,
+				4C473203199307B8009A1C85 /* WordsTableViewController.h */,
+				4C473204199307B8009A1C85 /* WordsTableViewController.m */,
 				4CCA50B1199202E6009F87DC /* Main.storyboard */,
-				4CCA50B4199202E6009F87DC /* ViewController.h */,
-				4CCA50B5199202E6009F87DC /* ViewController.m */,
+				4C473200199306FD009A1C85 /* Word.h */,
+				4C473201199306FD009A1C85 /* Word.m */,
 				4CCA50B7199202E6009F87DC /* Images.xcassets */,
 				4CCA50A6199202E6009F87DC /* Supporting Files */,
 			);
@@ -249,9 +254,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CCA50B6199202E6009F87DC /* ViewController.m in Sources */,
+				4C473202199306FD009A1C85 /* Word.m in Sources */,
 				4CCA50B0199202E6009F87DC /* AppDelegate.m in Sources */,
 				4CCA50AC199202E6009F87DC /* main.m in Sources */,
+				4C473205199307B8009A1C85 /* WordsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +462,7 @@
 				4CCA50D0199202E7009F87DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4CCA50D1199202E7009F87DC /* Build configuration list for PBXNativeTarget "wikiTabooTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +471,7 @@
 				4CCA50D3199202E7009F87DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
