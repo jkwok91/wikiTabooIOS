@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4C473202199306FD009A1C85 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C473201199306FD009A1C85 /* Word.m */; };
 		4C473205199307B8009A1C85 /* WordsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C473204199307B8009A1C85 /* WordsTableViewController.m */; };
+		4C5050B719945AF50090A733 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5050B619945AF50090A733 /* Team.m */; };
 		4CCA50A0199202E6009F87DC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA509F199202E6009F87DC /* Foundation.framework */; };
 		4CCA50A2199202E6009F87DC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA50A1199202E6009F87DC /* CoreGraphics.framework */; };
 		4CCA50A4199202E6009F87DC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCA50A3199202E6009F87DC /* UIKit.framework */; };
@@ -39,6 +40,8 @@
 		4C473201199306FD009A1C85 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
 		4C473203199307B8009A1C85 /* WordsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordsTableViewController.h; sourceTree = "<group>"; };
 		4C473204199307B8009A1C85 /* WordsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordsTableViewController.m; sourceTree = "<group>"; };
+		4C5050B519945AF50090A733 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
+		4C5050B619945AF50090A733 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
 		4CCA509C199202E6009F87DC /* wikiTaboo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wikiTaboo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CCA509F199202E6009F87DC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4CCA50A1199202E6009F87DC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -119,6 +122,8 @@
 				4CCA50AF199202E6009F87DC /* AppDelegate.m */,
 				4C473203199307B8009A1C85 /* WordsTableViewController.h */,
 				4C473204199307B8009A1C85 /* WordsTableViewController.m */,
+				4C5050B519945AF50090A733 /* Team.h */,
+				4C5050B619945AF50090A733 /* Team.m */,
 				4CCA50B1199202E6009F87DC /* Main.storyboard */,
 				4C473200199306FD009A1C85 /* Word.h */,
 				4C473201199306FD009A1C85 /* Word.m */,
@@ -254,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C5050B719945AF50090A733 /* Team.m in Sources */,
 				4C473202199306FD009A1C85 /* Word.m in Sources */,
 				4CCA50B0199202E6009F87DC /* AppDelegate.m in Sources */,
 				4CCA50AC199202E6009F87DC /* main.m in Sources */,

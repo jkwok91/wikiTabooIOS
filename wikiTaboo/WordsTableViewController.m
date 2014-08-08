@@ -7,23 +7,42 @@
 //
 
 #import "WordsTableViewController.h"
+#import "Team.h"
 
 @interface WordsTableViewController ()
 
 @end
 
 @implementation WordsTableViewController {
+    // for parsing the wikipedia text
     NSArray *doesntCount;
-    NSTimer *roundTimer;
+    
+    // 60 seconds on the clock
+    int subroundLength;
+    int secondsLeft;
+    NSTimer *subroundTimer;
+    
+    // keeps an array of all teams
+    NSMutableArray *_allTeams;
+    int _numTeams;
+    // and which one is currently playing
+    int _currentTeamIdx;
+    Team *_currentTeam;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        // create recentLogs array
+        // create tabooWords array
         self.tabooWords = [[NSMutableArray alloc] init];
-        doesntCount = @[@"^",@"help page",@"references or sources",@"improve this article",@"adding citations to reliable sources"];
+        // filter out wikipedia stuff
+        doesntCount = @[@"^",@"internal link",@"help page",@"references or sources",@"improve this article",@"adding citations to reliable sources"];
+        // store teams
+        _allTeams = [[NSMutableArray alloc] init];
+        _currentTeamIdx = 0;
+        subroundLength = 3;
+        secondsLeft = subroundLength;
     }
     return self;
 }
@@ -31,6 +50,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // all teams should register
+    Team *t1 = [[Team alloc] initWithName:@"team1"];
+    Team *t2 = [[Team alloc] initWithName:@"team2"];
+    Team *t3 = [[Team alloc] initWithName:@"teamBadass"];
+    // put them in the _allTeams array
+    _allTeams = @[t1,t2,t3];
+    _numTeams = [_allTeams count];
+    
+    // game starts here
     // grab the main word from the wiki api
     [self getNewRound];
     
@@ -41,14 +69,68 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)startGame {
+    // start the game
+}
+
+- (void)pauseGame {
+    // pause the game (tie this to a button)
+}
+
+- (void)endGame {
+    // tally up the scores and return the winning team's name
+}
+
 - (void)getNewRound {
+    [self getNewSubround];
+    _currentTeamIdx = (_currentTeamIdx+1)%_numTeams;
+    /*
+     this is hella wrong. like, completely. that's not how you do it. i need a scheduled thing here.
+     this is just a placeholder to convey what's gonna happen here (kinda?)
+    for (Team *t in _allTeams) { 
+        [self getNewSubround];
+    } 
+     */
+    // every time the timer hits 0, generate a new subround.
+}
+
+- (void)getNewSubround {
+    // update current team
+    _currentTeam = [_allTeams objectAtIndex:_currentTeamIdx];
+    self.currentTeamLabel.topItem.title = _currentTeam.teamName;
+    self.scoreLabel.text = [NSString stringWithFormat:@"%i",_currentTeam.score];
+    
+    // start timer
+        /* thanks, SO
+         http://stackoverflow.com/questions/17145112/countdown-timer-ios-tutorial
+         */
+    // creates a timer that calls updateCounter
+    subroundTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES]; // TODO FIX why is this timer so jumpy
+    // TODO how do i divorce the countdown from the subround. i need it to be a game thing. so that when the counter runs out, it calls new subround. this is entirely possible i know. i just need to think about it some more.
+    
+    // get word
     [self getNewWord];
-    // i also need to create and update the timer label so people know how much time is left
-    [self showWord];
-    [self performSelector:@selector(getNewRound) withObject:self afterDelay:1.0f];
+}
+
+- (void)updateCounter:(NSTimer *)theTimer {
+    secondsLeft = (secondsLeft > 0 ) ? secondsLeft-1 : subroundLength;
+    self.timeLeftLabel.text = [NSString stringWithFormat:@"%i", secondsLeft];
+}
+
+- (void)guessedIt {
+    _currentTeam.score++;
+    self.scoreLabel.text = [NSString stringWithFormat:@"%d",_currentTeam.score];
+    [self getNewWord];
+}
+
+- (void)skipIt { // wait should i just tie the button to "getNewWord"? or is this more readable?
+    [self getNewWord];
 }
 
 - (void)getNewWord {
+    // pause timer (because latency)
+    // TODO pause timer
+    
     NSDictionary* json;
     
     NSURL *randomWord = [NSURL URLWithString:@"http://en.wikipedia.org/w/api.php?action=query&format=json&list=random&rnnamespace=0&rnlimit=1"];
@@ -56,6 +138,8 @@
     // parse out the json data
     json = [self getJSON:randomWord];
     self.word = [[[[json objectForKey:@"query"] objectForKey:@"random"] objectAtIndex:0] objectForKey:@"title"];
+    // show word
+    self.toBeGuessed.text = self.word;
     
     // now get the taboo words
     NSString *wordFormattedForURL = [self.word stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
@@ -68,6 +152,8 @@
     NSError *error;
     // get all the linked words
     // regex for linked words
+    // TODO improve regex so that the links are all to wikipedia ARTICLES and not helppages.
+    // achievable by excluding links of the form wikipedia.org/wiki/Wikipedia: <---that colon.
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"([^>]+( [A-Za-z0-9\u00A0-\uFFFF]+)*)(?=</a>)" options:0 error:&error];
     
     /* thanks, SO:
@@ -88,7 +174,10 @@
     
     NSRegularExpression *tagRegex = [NSRegularExpression regularExpressionWithPattern:@"<[^<>]+>" options:0 error:&error];
     text = [tagRegex stringByReplacingMatchesInString:text options:0 range:NSMakeRange(0, [text length]) withTemplate:@""];
-    NSLog(text);
+    //NSLog(text);
+    
+    // resume timer
+    // TODO resume timer
 }
 
 - (NSDictionary *)getJSON:(NSURL *)requestURL {
@@ -103,17 +192,12 @@
                                     returningResponse:&response
                                                 error:&error];
     
-    //NSLog([[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding]);
     // parse out the json data
     NSDictionary* json = [NSJSONSerialization
                           JSONObjectWithData:urlData
                           options:kNilOptions
                           error:&error];
     return json;
-}
-
-- (void)showWord {
-    self.toBeGuessed.text = self.word;
 }
 
 - (void)didReceiveMemoryWarning
