@@ -51,6 +51,7 @@
 {
     [super viewDidLoad];
     // all teams should register
+    // these are placeholders
     Team *t1 = [[Team alloc] initWithName:@"team1"];
     Team *t2 = [[Team alloc] initWithName:@"team2"];
     Team *t3 = [[Team alloc] initWithName:@"teamBadass"];
@@ -58,17 +59,17 @@
     _allTeams = @[t1,t2,t3];
     _numTeams = [_allTeams count];
     
+    // creates a timer that calls updateCounter
+    // wait i need it to only fire after the round starts? ugh
+    subroundTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES]; // TODO FIX why is this timer so jumpy
+    
     // game starts here
-    // grab the main word from the wiki api
     [self getNewRound];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+/**************/
+/* GAME STATE */
+/**************/
 - (void)startGame {
     // start the game
 }
@@ -81,9 +82,11 @@
     // tally up the scores and return the winning team's name
 }
 
+/**********/
+/* ROUNDS */
+/**********/
 - (void)getNewRound {
     [self getNewSubround];
-    _currentTeamIdx = (_currentTeamIdx+1)%_numTeams;
     /*
      this is hella wrong. like, completely. that's not how you do it. i need a scheduled thing here.
      this is just a placeholder to convey what's gonna happen here (kinda?)
@@ -91,7 +94,6 @@
         [self getNewSubround];
     } 
      */
-    // every time the timer hits 0, generate a new subround.
 }
 
 - (void)getNewSubround {
@@ -104,19 +106,30 @@
         /* thanks, SO
          http://stackoverflow.com/questions/17145112/countdown-timer-ios-tutorial
          */
-    // creates a timer that calls updateCounter
-    subroundTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES]; // TODO FIX why is this timer so jumpy
-    // TODO how do i divorce the countdown from the subround. i need it to be a game thing. so that when the counter runs out, it calls new subround. this is entirely possible i know. i just need to think about it some more.
+    secondsLeft = subroundLength;
     
     // get word
     [self getNewWord];
 }
 
 - (void)updateCounter:(NSTimer *)theTimer {
-    secondsLeft = (secondsLeft > 0 ) ? secondsLeft-1 : subroundLength;
+    if (secondsLeft > 0) {
+        secondsLeft--;
+    } else {
+        // every time the timer hits 0, generate a new subround.
+        _currentTeamIdx = (_currentTeamIdx+1)%_numTeams;
+        if (_currentTeamIdx == 0) {
+            [self getNewRound];
+        } else {
+            [self getNewSubround];
+        }
+    }
     self.timeLeftLabel.text = [NSString stringWithFormat:@"%i", secondsLeft];
 }
 
+/***********/
+/* BUTTONS */
+/***********/
 - (void)guessedIt {
     _currentTeam.score++;
     self.scoreLabel.text = [NSString stringWithFormat:@"%d",_currentTeam.score];
@@ -127,6 +140,9 @@
     [self getNewWord];
 }
 
+/**************************/
+/* HANDLING HTTP REQUESTS */
+/**************************/
 - (void)getNewWord {
     // pause timer (because latency)
     // TODO pause timer
