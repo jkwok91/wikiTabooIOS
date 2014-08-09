@@ -14,6 +14,8 @@
 @end
 
 @implementation WordsTableViewController {
+    // TODO use wiki pageviews to select best pages
+    
     // for parsing the wikipedia text
     NSArray *doesntCount;
     
@@ -21,6 +23,7 @@
     int subroundLength;
     int secondsLeft;
     NSTimer *subroundTimer;
+    BOOL _paused;
     
     // keeps an array of all teams
     NSMutableArray *_allTeams;
@@ -28,6 +31,9 @@
     // and which one is currently playing
     int _currentTeamIdx;
     Team *_currentTeam;
+    
+    // swipe gesture
+    UISwipeGestureRecognizer *swipe;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -41,7 +47,8 @@
         // store teams
         _allTeams = [[NSMutableArray alloc] init];
         _currentTeamIdx = 0;
-        subroundLength = 10;
+        //subroundLength = 5; // for testing
+        subroundLength = 90;
         secondsLeft = subroundLength;
     }
     return self;
@@ -50,6 +57,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    swipe.numberOfTouchesRequired = 1;
+    swipe.direction = UISwipeGestureRecognizerDirectionLeft; //recognize left direction
+    [swipe setDelegate:self];
+    [self.view setUserInteractionEnabled:YES];
+    [self.view addGestureRecognizer:swipe];
+    
     // all teams should register
     // these are placeholders
     Team *t1 = [[Team alloc] initWithName:@"team1"];
@@ -61,10 +76,10 @@
     
     // creates a timer that calls updateCounter
     // wait i need it to only fire after the round starts? ugh
-    subroundTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES]; // TODO FIX why is this timer so jumpy
+    subroundTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter) userInfo:nil repeats:YES]; // TODO FIX why is this timer so jumpy
     
     // game starts here
-    [self getNewRound];
+    [self startGame];
 }
 
 /**************/
@@ -72,10 +87,20 @@
 /**************/
 - (void)startGame {
     // start the game
+    [self getNewRound];
+    // probably some other shit
 }
 
 - (void)pauseGame {
-    // pause the game (tie this to a button)
+    secondsLeft--;
+    if (!_paused) {
+        // pause the game (tie this to a button perhaps)
+        [subroundTimer invalidate];
+        subroundTimer = nil;
+    } else {
+        subroundTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter) userInfo:nil repeats:YES];
+    }
+    _paused = !_paused;
 }
 
 - (void)endGame {
@@ -87,19 +112,12 @@
 /**********/
 - (void)getNewRound {
     [self getNewSubround];
-    /*
-     this is hella wrong. like, completely. that's not how you do it. i need a scheduled thing here.
-     this is just a placeholder to convey what's gonna happen here (kinda?)
-    for (Team *t in _allTeams) { 
-        [self getNewSubround];
-    } 
-     */
 }
 
 - (void)getNewSubround {
     // update current team
     _currentTeam = [_allTeams objectAtIndex:_currentTeamIdx];
-    self.currentTeamLabel.topItem.title = _currentTeam.teamName;
+    self.currentTeamLabel.text = _currentTeam.teamName;
     self.scoreLabel.text = [NSString stringWithFormat:@"%i",_currentTeam.score];
     
     // start timer
@@ -112,7 +130,7 @@
     [self getNewWord];
 }
 
-- (void)updateCounter:(NSTimer *)theTimer {
+- (void)updateCounter {
     if (secondsLeft > 0) {
         secondsLeft--;
     } else {
@@ -127,17 +145,21 @@
     self.timeLeftLabel.text = [NSString stringWithFormat:@"%i", secondsLeft];
 }
 
-/***********/
-/* BUTTONS */
-/***********/
-- (void)guessedIt {
+/********************/
+/* HANDLES UI STUFF */
+/********************/
+- (IBAction)buttonTapped:(UIButton *)sender {
     _currentTeam.score++;
     self.scoreLabel.text = [NSString stringWithFormat:@"%d",_currentTeam.score];
     [self getNewWord];
 }
 
-- (void)skipIt { // wait should i just tie the button to "getNewWord"? or is this more readable?
+- (void)handleSwipe:(UISwipeGestureRecognizer *)recognizer {
     [self getNewWord];
+}
+
+- (IBAction)pause:(UIButton *)sender {
+    [self pauseGame];
 }
 
 /**************************/
@@ -149,7 +171,9 @@
     [self.tabooWords removeAllObjects];
     
     // pause timer (because latency)
-    // TODO pause timer
+    // kill subroundTimer
+    [subroundTimer invalidate];
+    subroundTimer = nil;
     
     NSDictionary* json;
     
@@ -197,7 +221,7 @@
     //NSLog(text);
     
     // resume timer
-    // TODO resume timer
+    subroundTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter) userInfo:nil repeats:YES];
 }
 
 - (NSDictionary *)getJSON:(NSURL *)requestURL {

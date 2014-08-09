@@ -9,14 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "Word.h"
 
-@interface WordsTableViewController : UITableViewController
+@interface WordsTableViewController : UITableViewController <UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) NSString *word;
 @property (strong, nonatomic) NSMutableArray *tabooWords;
-@property (weak, nonatomic) IBOutlet Word *toBeGuessed;
-@property (weak, nonatomic) IBOutlet UINavigationBar *currentTeamLabel;
+@property (weak, nonatomic) IBOutlet UITextView *toBeGuessed;
+@property (weak, nonatomic) IBOutlet UILabel *currentTeamLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLeftLabel;
+@property (weak, nonatomic) IBOutlet UIButton *guessedWord;
 
+- (IBAction)buttonTapped:(UIButton *)sender;
+- (IBAction)pause:(UIButton *)sender;
 
 @end
