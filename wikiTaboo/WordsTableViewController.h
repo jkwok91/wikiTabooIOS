@@ -10,10 +10,11 @@
 #import "Word.h"
 
 @interface WordsTableViewController : UITableViewController <UIGestureRecognizerDelegate>
-
+@property (strong, nonatomic) NSMutableDictionary *cards;
+@property (strong, nonatomic) NSMutableArray *listOfWords;
 @property (strong, nonatomic) NSString *word;
 @property (strong, nonatomic) NSMutableArray *tabooWords;
-@property (weak, nonatomic) IBOutlet UITextView *toBeGuessed;
+@property (weak, nonatomic) IBOutlet UILabel *toBeGuessed;
 @property (weak, nonatomic) IBOutlet UILabel *currentTeamLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLeftLabel;

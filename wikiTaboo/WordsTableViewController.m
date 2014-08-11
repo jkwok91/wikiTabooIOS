@@ -15,6 +15,9 @@
 
 @implementation WordsTableViewController {
     // TODO use wiki pageviews to select best pages
+    // TODO fetch new word on resume
+    // TODO pause on end of subround so that you can add score or wahtever
+    // TODO load a couple of words in the background so there is no latency
     
     // for parsing the wikipedia text
     NSArray *doesntCount;
@@ -25,6 +28,8 @@
     NSTimer *subroundTimer;
     BOOL _paused;
     
+    // game data
+    int _numRounds;
     // keeps an array of all teams
     NSMutableArray *_allTeams;
     int _numTeams;
@@ -40,10 +45,10 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        // create tabooWords array
-        self.tabooWords = [[NSMutableArray alloc] init];
+        self.listOfWords = [NSMutableArray array];
+        self.cards = [NSMutableDictionary dictionary];
         // filter out wikipedia stuff
-        doesntCount = @[@"^",@"internal link",@"help page",@"references or sources",@"improve this article",@"adding citations to reliable sources"];
+        doesntCount = @[@"^",@"improve this article",@"archived here.",@"internal link",@"help page",@"references or sources",@"improve this article",@"adding citations to reliable sources"];
         // store teams
         _allTeams = [[NSMutableArray alloc] init];
         _currentTeamIdx = 0;
@@ -73,11 +78,13 @@
     // put them in the _allTeams array
     _allTeams = @[t1,t2,t3];
     _numTeams = [_allTeams count];
+    _numRounds = 5;
     
     // creates a timer that calls updateCounter
     // wait i need it to only fire after the round starts? ugh
     subroundTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter) userInfo:nil repeats:YES]; // TODO FIX why is this timer so jumpy
     
+    //[self performSelector:@selector(getTerm) withObject:self afterDelay:1.0f];
     // game starts here
     [self startGame];
 }
@@ -86,9 +93,11 @@
 /* GAME STATE */
 /**************/
 - (void)startGame {
-    // start the game
-    [self getNewRound];
     // probably some other shit
+    // how many rounds are we playing
+    // start the game
+    [self getTerm];
+    [self getNewRound];
 }
 
 - (void)pauseGame {
@@ -105,6 +114,14 @@
 
 - (void)endGame {
     // tally up the scores and return the winning team's name
+    NSMutableArray *winners; // = [_allTeams objectAtIndex:0];
+    int winningScore = 0;
+    for (Team *t in _allTeams) {
+        if (t.score >= winningScore) {
+            [winners addObject:t];
+        }
+    }
+    // go to new screen and display winners and winning score
 }
 
 /**********/
@@ -112,6 +129,7 @@
 /**********/
 - (void)getNewRound {
     [self getNewSubround];
+    _numRounds--;
 }
 
 - (void)getNewSubround {
@@ -133,11 +151,16 @@
 - (void)updateCounter {
     if (secondsLeft > 0) {
         secondsLeft--;
+        [self getTerm];
     } else {
         // every time the timer hits 0, generate a new subround.
         _currentTeamIdx = (_currentTeamIdx+1)%_numTeams;
         if (_currentTeamIdx == 0) {
-            [self getNewRound];
+            if (_numRounds > 0) {
+                [self getNewRound];
+            } else {
+                [self endGame];
+            }
         } else {
             [self getNewSubround];
         }
@@ -162,31 +185,40 @@
     [self pauseGame];
 }
 
-/**************************/
-/* HANDLING HTTP REQUESTS */
-/**************************/
+/************************/
+/* LOADING UP NEW WORDS */
+/************************/
 - (void)getNewWord {
-    // clear prev word/taboo words
-    self.word = @"";
-    [self.tabooWords removeAllObjects];
-    
-    // pause timer (because latency)
-    // kill subroundTimer
-    [subroundTimer invalidate];
-    subroundTimer = nil;
-    
-    NSDictionary* json;
-    
+    self.word = [self.listOfWords objectAtIndex:0];
+    self.toBeGuessed.text = self.word;
+    self.tabooWords = [self.cards objectForKey:self.word];
+    [self.tableView reloadData];
+    [self.listOfWords removeObjectAtIndex:0];
+}
+
+- (void)getTerm {
+    NSString *term = [self getWord];
+    [self.listOfWords addObject:term];
+    NSArray *taboo = [self getTabooWords:term];
+    self.cards[term] = taboo;
+}
+
+- (NSString *)getWord {
+    NSDictionary *json;
+    NSString *word;
     NSURL *randomWord = [NSURL URLWithString:@"http://en.wikipedia.org/w/api.php?action=query&format=json&list=random&rnnamespace=0&rnlimit=1"];
     
     // parse out the json data
     json = [self getJSON:randomWord];
-    self.word = [[[[json objectForKey:@"query"] objectForKey:@"random"] objectAtIndex:0] objectForKey:@"title"];
-    // show word
-    self.toBeGuessed.text = self.word;
-    
-    // now get the taboo words
-    NSString *wordFormattedForURL = [self.word stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    word = [[[[json objectForKey:@"query"] objectForKey:@"random"] objectAtIndex:0] objectForKey:@"title"];
+    return word;
+}
+
+- (NSArray *)getTabooWords:(NSString *)word {
+    NSDictionary *json;
+    NSMutableArray *taboos = [NSMutableArray array];
+    // get the URL for this
+    NSString *wordFormattedForURL = [word stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     NSString *urlString = [NSString stringWithFormat:@"http://en.wikipedia.org/w/api.php?format=json&action=parse&prop=text&page=%@&redirects=true&section=0",wordFormattedForURL];
     NSURL *randomPage = [NSURL URLWithString:urlString];
     
@@ -201,27 +233,20 @@
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"([^>]+( [A-Za-z0-9\u00A0-\uFFFF]+)*)(?=</a>)" options:0 error:&error];
     
     /* thanks, SO:
-       http://stackoverflow.com/questions/16204218/nsstring-regex-string-matching-search
+     http://stackoverflow.com/questions/16204218/nsstring-regex-string-matching-search
      */
     [regex enumerateMatchesInString:text options:0 range:NSMakeRange(0, [text length]) usingBlock:^(NSTextCheckingResult *match, NSMatchingFlags flags, BOOL *stop){
         
         // detect
-        NSString *insideString = [text substringWithRange:[match rangeAtIndex:1]];
+        NSString *insideString = [[text substringWithRange:[match rangeAtIndex:1]] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         for (NSString *str in doesntCount) {
-            if (![insideString isEqualToString:str] && ![self.tabooWords containsObject:insideString]) {
+            if (![insideString isEqualToString:str] && ![taboos containsObject:insideString]) {
                 // load into taboo words array
-                [self.tabooWords addObject:insideString];
+                [taboos addObject:insideString];
             }
         }
     }];
-    [self.tableView reloadData];
-    
-    NSRegularExpression *tagRegex = [NSRegularExpression regularExpressionWithPattern:@"<[^<>]+>" options:0 error:&error];
-    text = [tagRegex stringByReplacingMatchesInString:text options:0 range:NSMakeRange(0, [text length]) withTemplate:@""];
-    //NSLog(text);
-    
-    // resume timer
-    subroundTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter) userInfo:nil repeats:YES];
+    return (NSArray *)taboos;
 }
 
 - (NSDictionary *)getJSON:(NSURL *)requestURL {
