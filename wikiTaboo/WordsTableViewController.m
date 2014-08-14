@@ -218,7 +218,7 @@
     NSDictionary *json;
     NSMutableArray *taboos = [NSMutableArray array];
     // get the URL for this
-    NSString *wordFormattedForURL = [word stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    NSString *wordFormattedForURL = [[word stringByReplacingOccurrencesOfString:@" " withString:@"_"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *urlString = [NSString stringWithFormat:@"http://en.wikipedia.org/w/api.php?format=json&action=parse&prop=text&page=%@&redirects=true&section=0",wordFormattedForURL];
     NSURL *randomPage = [NSURL URLWithString:urlString];
     
